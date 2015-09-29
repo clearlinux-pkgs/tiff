@@ -4,7 +4,7 @@
 #
 Name     : tiff
 Version  : 4.0.3
-Release  : 7
+Release  : 8
 URL      : ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.3.tar.gz
 Source0  : ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.3.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
