@@ -4,12 +4,12 @@
 #
 Name     : tiff
 Version  : 4.0.6
-Release  : 9
+Release  : 10
 URL      : ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.6.tar.gz
 Source0  : ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.6.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
 Group    : Development/Tools
-License  : libtiff
+License  : MIT libtiff
 Requires: tiff-bin
 Requires: tiff-lib
 Requires: tiff-doc
@@ -71,8 +71,9 @@ lib components for the tiff package.
 %build
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
-export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition -ffunction-sections "
-export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition -ffunction-sections "
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -flto -O3 -fno-semantic-interposition -falign-functions=32 "
+export CXXFLAGS="$CXXFLAGS -flto -O3 -fno-semantic-interposition -falign-functions=32 "
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
