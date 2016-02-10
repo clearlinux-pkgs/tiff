@@ -4,7 +4,7 @@
 #
 Name     : tiff
 Version  : 4.0.6
-Release  : 11
+Release  : 12
 URL      : ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.6.tar.gz
 Source0  : ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.6.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
@@ -13,9 +13,16 @@ License  : libtiff
 Requires: tiff-bin
 Requires: tiff-lib
 Requires: tiff-doc
+BuildRequires : automake
+BuildRequires : automake-dev
 BuildRequires : cmake
+BuildRequires : gettext-bin
 BuildRequires : libjpeg-turbo-dev
+BuildRequires : libtool
+BuildRequires : libtool-dev
+BuildRequires : m4
 BuildRequires : mesa-dev
+BuildRequires : pkg-config-dev
 BuildRequires : pkgconfig(ice)
 BuildRequires : pkgconfig(zlib)
 BuildRequires : python-dev
@@ -23,6 +30,7 @@ BuildRequires : scons
 BuildRequires : xz-dev
 BuildRequires : zlib-dev
 Patch1: cve-2015-7554.patch
+Patch2: cve-2015-8668.patch
 
 %description
 TIFF Software Distribution
@@ -69,14 +77,15 @@ lib components for the tiff package.
 %prep
 %setup -q -n tiff-4.0.6
 %patch1 -p1
+%patch2 -p1
 
 %build
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition -flto "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition -flto "
-%configure --disable-static
+export CFLAGS="$CFLAGS -flto -fno-semantic-interposition -O3 -falign-functions=32 "
+export CXXFLAGS="$CXXFLAGS -flto -fno-semantic-interposition -O3 -falign-functions=32 "
+%reconfigure --disable-static
 make V=1  %{?_smp_mflags}
 
 %check
@@ -94,7 +103,6 @@ rm -rf %{buildroot}
 
 %files bin
 %defattr(-,root,root,-)
-/usr/bin/bmp2tiff
 /usr/bin/fax2ps
 /usr/bin/fax2tiff
 /usr/bin/gif2tiff
