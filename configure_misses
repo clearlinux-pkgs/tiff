@@ -1,0 +1,25 @@
+Configure miss: int8
+Configure miss: int16
+Configure miss: int32
+Configure miss: jbg_dec_init in -ljbig
+Configure miss: jbig.h usability
+Configure miss: jbig.h presence
+Configure miss: jbig.h
+Configure miss: whether we are using the Microsoft C compiler
+Configure miss: OpenGL/gl.h usability
+Configure miss: OpenGL/gl.h presence
+Configure miss: OpenGL/gl.h
+Configure miss: GL/glu.h usability
+Configure miss: GL/glu.h presence
+Configure miss: GL/glu.h
+Configure miss: OpenGL/glu.h usability
+Configure miss: OpenGL/glu.h presence
+Configure miss: OpenGL/glu.h
+Configure miss: OpenGL Utility library
+Configure miss: GL/glut.h usability
+Configure miss: GL/glut.h presence
+Configure miss: GL/glut.h
+Configure miss: GLUT/glut.h usability
+Configure miss: GLUT/glut.h presence
+Configure miss: GLUT/glut.h
+Configure miss: GLUT library

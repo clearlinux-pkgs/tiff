@@ -1,5 +1,5 @@
 PKG_NAME := tiff
-URL := ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.6.tar.gz
-ARCHIVES :=
+URL := ftp://download.osgeo.org/libtiff/tiff-4.0.8.tar.gz
+
 
 include ../common/Makefile.common
