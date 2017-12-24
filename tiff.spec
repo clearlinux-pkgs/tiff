@@ -4,7 +4,7 @@
 #
 Name     : tiff
 Version  : 4.0.8
-Release  : 15
+Release  : 16
 URL      : ftp://download.osgeo.org/libtiff/tiff-4.0.8.tar.gz
 Source0  : ftp://download.osgeo.org/libtiff/tiff-4.0.8.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
