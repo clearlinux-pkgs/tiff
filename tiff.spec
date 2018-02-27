@@ -4,7 +4,7 @@
 #
 Name     : tiff
 Version  : 4.0.9
-Release  : 19
+Release  : 20
 URL      : ftp://download.osgeo.org/libtiff/tiff-4.0.9.tar.gz
 Source0  : ftp://download.osgeo.org/libtiff/tiff-4.0.9.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
@@ -23,6 +23,8 @@ BuildRequires : scons
 BuildRequires : xz-dev
 BuildRequires : zlib-dev
 Patch1: cve-2017-17095.patch
+Patch2: cve-2017-18013.patch
+Patch3: cve-2018-5784.patch
 
 %description
 TIFF Software Distribution
@@ -69,17 +71,19 @@ lib components for the tiff package.
 %prep
 %setup -q -n tiff-4.0.9
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1514413455
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
+export SOURCE_DATE_EPOCH=1519708658
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -91,7 +95,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1514413455
+export SOURCE_DATE_EPOCH=1519708658
 rm -rf %{buildroot}
 %make_install
 
