@@ -4,7 +4,7 @@
 #
 Name     : tiff
 Version  : 4.0.9
-Release  : 22
+Release  : 23
 URL      : ftp://download.osgeo.org/libtiff/tiff-4.0.9.tar.gz
 Source0  : ftp://download.osgeo.org/libtiff/tiff-4.0.9.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
@@ -26,7 +26,6 @@ Patch1: cve-2017-17095.patch
 Patch2: cve-2017-18013.patch
 Patch3: cve-2018-5784.patch
 Patch4: cve-2018-7456.patch
-Patch5: cve-2017-17942.patch
 
 %description
 TIFF Software Distribution
@@ -76,14 +75,13 @@ lib components for the tiff package.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1523109769
+export SOURCE_DATE_EPOCH=1523919776
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
@@ -99,7 +97,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1523109769
+export SOURCE_DATE_EPOCH=1523919776
 rm -rf %{buildroot}
 %make_install
 

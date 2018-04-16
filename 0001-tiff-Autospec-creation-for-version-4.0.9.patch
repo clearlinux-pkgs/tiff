@@ -1,0 +1,104 @@
+From 0536caea26b26aa5f9759363a79e6c149e822ae1 Mon Sep 17 00:00:00 2001
+From: Victor Rodriguez <victor.rodriguez.bahena@intel.com>
+Date: Sat, 7 Apr 2018 14:02:53 +0000
+Subject: [PATCH tiff] tiff: Autospec creation for version 4.0.9
+
+Fix CVE-2017-17942
+http://bugzilla.maptools.org/show_bug.cgi?id=2767
+---
+ cve-2017-17942.patch | 18 ++++++++++++++++++
+ release              |  2 +-
+ series               |  1 +
+ tiff.spec            |  8 +++++---
+ 4 files changed, 25 insertions(+), 4 deletions(-)
+ create mode 100644 cve-2017-17942.patch
+
+diff --git a/cve-2017-17942.patch b/cve-2017-17942.patch
+new file mode 100644
+index 0000000..1c725aa
+--- /dev/null
++++ b/cve-2017-17942.patch
+@@ -0,0 +1,18 @@
++diff --git a/libtiff/tif_packbits.c b/libtiff/tif_packbits.c
++index 18904b0..6680ba3 100644
++--- a/libtiff/tif_packbits.c
+++++ b/libtiff/tif_packbits.c
++@@ -82,7 +82,12 @@ PackBitsEncode(TIFF* tif, uint8* buf, tmsize_t cc, uint16 s)
++ 		/*
++ 		 * Find the longest string of identical bytes.
++ 		 */
++-		b = *bp++;
+++        if (sizeof(*bp+1) == sizeof(b)){
+++		    b = *bp++;
+++        }
+++        else{
+++            return (-1);
+++        }
++ 		cc--;
++ 		n = 1;
++ 		for (; cc > 0 && b == *bp; cc--, bp++)
+diff --git a/release b/release
+index aabe6ec..2bd5a0a 100644
+--- a/release
++++ b/release
+@@ -1 +1 @@
+-21
++22
+diff --git a/series b/series
+index 9934e3f..e3d1bb1 100644
+--- a/series
++++ b/series
+@@ -4,3 +4,4 @@ cve-2017-17095.patch
+ cve-2017-18013.patch
+ cve-2018-5784.patch
+ cve-2018-7456.patch
++cve-2017-17942.patch
+diff --git a/tiff.spec b/tiff.spec
+index 6795c1a..99c8e39 100644
+--- a/tiff.spec
++++ b/tiff.spec
+@@ -4,7 +4,7 @@
+ #
+ Name     : tiff
+ Version  : 4.0.9
+-Release  : 21
++Release  : 22
+ URL      : ftp://download.osgeo.org/libtiff/tiff-4.0.9.tar.gz
+ Source0  : ftp://download.osgeo.org/libtiff/tiff-4.0.9.tar.gz
+ Summary  : Tag Image File Format (TIFF) library.
+@@ -26,6 +26,7 @@ Patch1: cve-2017-17095.patch
+ Patch2: cve-2017-18013.patch
+ Patch3: cve-2018-5784.patch
+ Patch4: cve-2018-7456.patch
++Patch5: cve-2017-17942.patch
+ 
+ %description
+ TIFF Software Distribution
+@@ -75,13 +76,14 @@ lib components for the tiff package.
+ %patch2 -p1
+ %patch3 -p1
+ %patch4 -p1
++%patch5 -p1
+ 
+ %build
+ export http_proxy=http://127.0.0.1:9/
+ export https_proxy=http://127.0.0.1:9/
+ export no_proxy=localhost,127.0.0.1,0.0.0.0
+ export LANG=C
+-export SOURCE_DATE_EPOCH=1523108349
++export SOURCE_DATE_EPOCH=1523109769
+ export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
+ export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
+ export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
+@@ -97,7 +99,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
+ make VERBOSE=1 V=1 %{?_smp_mflags} check
+ 
+ %install
+-export SOURCE_DATE_EPOCH=1523108349
++export SOURCE_DATE_EPOCH=1523109769
+ rm -rf %{buildroot}
+ %make_install
+ 
+-- 
+2.17.0
+
