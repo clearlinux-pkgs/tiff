@@ -18,7 +18,7 @@ BuildRequires : libjpeg-turbo-dev
 BuildRequires : mesa-dev
 BuildRequires : pkgconfig(ice)
 BuildRequires : pkgconfig(zlib)
-BuildRequires : python-dev
+
 BuildRequires : scons
 BuildRequires : xz-dev
 BuildRequires : zlib-dev
