@@ -4,29 +4,29 @@
 #
 Name     : tiff
 Version  : v4.0.9
-Release  : 27
+Release  : 28
 URL      : https://github.com/vadz/libtiff/archive/Release-v4-0-9.tar.gz
 Source0  : https://github.com/vadz/libtiff/archive/Release-v4-0-9.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
 Group    : Development/Tools
 License  : libtiff
-Requires: tiff-bin
-Requires: tiff-lib
-Requires: tiff-license
-Requires: tiff-man
-BuildRequires : cmake
+Requires: tiff-bin = %{version}-%{release}
+Requires: tiff-lib = %{version}-%{release}
+Requires: tiff-license = %{version}-%{release}
+Requires: tiff-man = %{version}-%{release}
+BuildRequires : buildreq-cmake
+BuildRequires : buildreq-scons
 BuildRequires : libjpeg-turbo-dev
 BuildRequires : mesa-dev
 BuildRequires : pkgconfig(ice)
 BuildRequires : pkgconfig(zlib)
-BuildRequires : python-dev
-BuildRequires : scons
 BuildRequires : xz-dev
 BuildRequires : zlib-dev
 Patch1: cve-2017-17095.patch
 Patch2: cve-2017-18013.patch
 Patch3: cve-2018-5784.patch
 Patch4: cve-2018-7456.patch
+Patch5: CVE-2018-10963.patch
 
 %description
 $Header$
@@ -39,8 +39,8 @@ favorite WWW viewer at html/index.html;
 %package bin
 Summary: bin components for the tiff package.
 Group: Binaries
-Requires: tiff-license
-Requires: tiff-man
+Requires: tiff-license = %{version}-%{release}
+Requires: tiff-man = %{version}-%{release}
 
 %description bin
 bin components for the tiff package.
@@ -49,9 +49,9 @@ bin components for the tiff package.
 %package dev
 Summary: dev components for the tiff package.
 Group: Development
-Requires: tiff-lib
-Requires: tiff-bin
-Provides: tiff-devel
+Requires: tiff-lib = %{version}-%{release}
+Requires: tiff-bin = %{version}-%{release}
+Provides: tiff-devel = %{version}-%{release}
 
 %description dev
 dev components for the tiff package.
@@ -60,7 +60,7 @@ dev components for the tiff package.
 %package doc
 Summary: doc components for the tiff package.
 Group: Documentation
-Requires: tiff-man
+Requires: tiff-man = %{version}-%{release}
 
 %description doc
 doc components for the tiff package.
@@ -69,7 +69,7 @@ doc components for the tiff package.
 %package lib
 Summary: lib components for the tiff package.
 Group: Libraries
-Requires: tiff-license
+Requires: tiff-license = %{version}-%{release}
 
 %description lib
 lib components for the tiff package.
@@ -97,13 +97,14 @@ man components for the tiff package.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1530625234
+export SOURCE_DATE_EPOCH=1540233569
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -119,10 +120,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1530625234
+export SOURCE_DATE_EPOCH=1540233569
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/tiff
-cp COPYRIGHT %{buildroot}/usr/share/doc/tiff/COPYRIGHT
+mkdir -p %{buildroot}/usr/share/package-licenses/tiff
+cp COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/COPYRIGHT
 %make_install
 
 %files
@@ -156,9 +157,54 @@ cp COPYRIGHT %{buildroot}/usr/share/doc/tiff/COPYRIGHT
 /usr/lib64/libtiff.so
 /usr/lib64/libtiffxx.so
 /usr/lib64/pkgconfig/libtiff-4.pc
+/usr/share/man/man3/TIFFClose.3tiff
+/usr/share/man/man3/TIFFDataWidth.3tiff
+/usr/share/man/man3/TIFFError.3tiff
+/usr/share/man/man3/TIFFFieldDataType.3tiff
+/usr/share/man/man3/TIFFFieldName.3tiff
+/usr/share/man/man3/TIFFFieldPassCount.3tiff
+/usr/share/man/man3/TIFFFieldReadCount.3tiff
+/usr/share/man/man3/TIFFFieldTag.3tiff
+/usr/share/man/man3/TIFFFieldWriteCount.3tiff
+/usr/share/man/man3/TIFFFlush.3tiff
+/usr/share/man/man3/TIFFGetField.3tiff
+/usr/share/man/man3/TIFFOpen.3tiff
+/usr/share/man/man3/TIFFPrintDirectory.3tiff
+/usr/share/man/man3/TIFFRGBAImage.3tiff
+/usr/share/man/man3/TIFFReadDirectory.3tiff
+/usr/share/man/man3/TIFFReadEncodedStrip.3tiff
+/usr/share/man/man3/TIFFReadEncodedTile.3tiff
+/usr/share/man/man3/TIFFReadRGBAImage.3tiff
+/usr/share/man/man3/TIFFReadRGBAStrip.3tiff
+/usr/share/man/man3/TIFFReadRGBATile.3tiff
+/usr/share/man/man3/TIFFReadRawStrip.3tiff
+/usr/share/man/man3/TIFFReadRawTile.3tiff
+/usr/share/man/man3/TIFFReadScanline.3tiff
+/usr/share/man/man3/TIFFReadTile.3tiff
+/usr/share/man/man3/TIFFSetDirectory.3tiff
+/usr/share/man/man3/TIFFSetField.3tiff
+/usr/share/man/man3/TIFFWarning.3tiff
+/usr/share/man/man3/TIFFWriteDirectory.3tiff
+/usr/share/man/man3/TIFFWriteEncodedStrip.3tiff
+/usr/share/man/man3/TIFFWriteEncodedTile.3tiff
+/usr/share/man/man3/TIFFWriteRawStrip.3tiff
+/usr/share/man/man3/TIFFWriteRawTile.3tiff
+/usr/share/man/man3/TIFFWriteScanline.3tiff
+/usr/share/man/man3/TIFFWriteTile.3tiff
+/usr/share/man/man3/TIFFbuffer.3tiff
+/usr/share/man/man3/TIFFcodec.3tiff
+/usr/share/man/man3/TIFFcolor.3tiff
+/usr/share/man/man3/TIFFmemory.3tiff
+/usr/share/man/man3/TIFFquery.3tiff
+/usr/share/man/man3/TIFFsize.3tiff
+/usr/share/man/man3/TIFFstrip.3tiff
+/usr/share/man/man3/TIFFswab.3tiff
+/usr/share/man/man3/TIFFtile.3tiff
+/usr/share/man/man3/libtiff.3tiff
 
 %files doc
 %defattr(0644,root,root,0755)
+/usr/share/doc/tiff-4.0.9/COPYRIGHT
 /usr/share/doc/tiff-4.0.9/ChangeLog
 /usr/share/doc/tiff-4.0.9/README
 /usr/share/doc/tiff-4.0.9/README.vms
@@ -314,12 +360,11 @@ cp COPYRIGHT %{buildroot}/usr/share/doc/tiff/COPYRIGHT
 /usr/lib64/libtiffxx.so.5.3.0
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/tiff-4.0.9/COPYRIGHT
-/usr/share/doc/tiff/COPYRIGHT
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/tiff/COPYRIGHT
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man1/fax2ps.1
 /usr/share/man/man1/fax2tiff.1
 /usr/share/man/man1/pal2rgb.1
@@ -339,47 +384,3 @@ cp COPYRIGHT %{buildroot}/usr/share/doc/tiff/COPYRIGHT
 /usr/share/man/man1/tiffmedian.1
 /usr/share/man/man1/tiffset.1
 /usr/share/man/man1/tiffsplit.1
-/usr/share/man/man3/TIFFClose.3tiff
-/usr/share/man/man3/TIFFDataWidth.3tiff
-/usr/share/man/man3/TIFFError.3tiff
-/usr/share/man/man3/TIFFFieldDataType.3tiff
-/usr/share/man/man3/TIFFFieldName.3tiff
-/usr/share/man/man3/TIFFFieldPassCount.3tiff
-/usr/share/man/man3/TIFFFieldReadCount.3tiff
-/usr/share/man/man3/TIFFFieldTag.3tiff
-/usr/share/man/man3/TIFFFieldWriteCount.3tiff
-/usr/share/man/man3/TIFFFlush.3tiff
-/usr/share/man/man3/TIFFGetField.3tiff
-/usr/share/man/man3/TIFFOpen.3tiff
-/usr/share/man/man3/TIFFPrintDirectory.3tiff
-/usr/share/man/man3/TIFFRGBAImage.3tiff
-/usr/share/man/man3/TIFFReadDirectory.3tiff
-/usr/share/man/man3/TIFFReadEncodedStrip.3tiff
-/usr/share/man/man3/TIFFReadEncodedTile.3tiff
-/usr/share/man/man3/TIFFReadRGBAImage.3tiff
-/usr/share/man/man3/TIFFReadRGBAStrip.3tiff
-/usr/share/man/man3/TIFFReadRGBATile.3tiff
-/usr/share/man/man3/TIFFReadRawStrip.3tiff
-/usr/share/man/man3/TIFFReadRawTile.3tiff
-/usr/share/man/man3/TIFFReadScanline.3tiff
-/usr/share/man/man3/TIFFReadTile.3tiff
-/usr/share/man/man3/TIFFSetDirectory.3tiff
-/usr/share/man/man3/TIFFSetField.3tiff
-/usr/share/man/man3/TIFFWarning.3tiff
-/usr/share/man/man3/TIFFWriteDirectory.3tiff
-/usr/share/man/man3/TIFFWriteEncodedStrip.3tiff
-/usr/share/man/man3/TIFFWriteEncodedTile.3tiff
-/usr/share/man/man3/TIFFWriteRawStrip.3tiff
-/usr/share/man/man3/TIFFWriteRawTile.3tiff
-/usr/share/man/man3/TIFFWriteScanline.3tiff
-/usr/share/man/man3/TIFFWriteTile.3tiff
-/usr/share/man/man3/TIFFbuffer.3tiff
-/usr/share/man/man3/TIFFcodec.3tiff
-/usr/share/man/man3/TIFFcolor.3tiff
-/usr/share/man/man3/TIFFmemory.3tiff
-/usr/share/man/man3/TIFFquery.3tiff
-/usr/share/man/man3/TIFFsize.3tiff
-/usr/share/man/man3/TIFFstrip.3tiff
-/usr/share/man/man3/TIFFswab.3tiff
-/usr/share/man/man3/TIFFtile.3tiff
-/usr/share/man/man3/libtiff.3tiff

@@ -1,0 +1,7 @@
+v4.0.9
+libjpeg-turbo-dev
+mesa-dev
+pkgconfig(ice)
+pkgconfig(zlib)
+xz-dev
+zlib-dev
