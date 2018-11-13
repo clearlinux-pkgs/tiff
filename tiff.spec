@@ -4,14 +4,13 @@
 #
 Name     : tiff
 Version  : v4.0.9
-Release  : 35
+Release  : 36
 URL      : https://github.com/vadz/libtiff/archive/Release-v4-0-9.tar.gz
 Source0  : https://github.com/vadz/libtiff/archive/Release-v4-0-9.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
 Group    : Development/Tools
 License  : libtiff
 Requires: tiff-bin = %{version}-%{release}
-Requires: tiff-data = %{version}-%{release}
 Requires: tiff-lib = %{version}-%{release}
 Requires: tiff-license = %{version}-%{release}
 Requires: tiff-man = %{version}-%{release}
@@ -43,10 +42,17 @@ This file is just a placeholder; all the documentation is now in
 HTML in the html directory.  To view the documentation point your
 favorite WWW viewer at html/index.html;
 
+%package abi
+Summary: abi components for the tiff package.
+Group: Default
+
+%description abi
+abi components for the tiff package.
+
+
 %package bin
 Summary: bin components for the tiff package.
 Group: Binaries
-Requires: tiff-data = %{version}-%{release}
 Requires: tiff-license = %{version}-%{release}
 Requires: tiff-man = %{version}-%{release}
 
@@ -54,20 +60,11 @@ Requires: tiff-man = %{version}-%{release}
 bin components for the tiff package.
 
 
-%package data
-Summary: data components for the tiff package.
-Group: Data
-
-%description data
-data components for the tiff package.
-
-
 %package dev
 Summary: dev components for the tiff package.
 Group: Development
 Requires: tiff-lib = %{version}-%{release}
 Requires: tiff-bin = %{version}-%{release}
-Requires: tiff-data = %{version}-%{release}
 Provides: tiff-devel = %{version}-%{release}
 
 %description dev
@@ -86,7 +83,6 @@ doc components for the tiff package.
 %package lib
 Summary: lib components for the tiff package.
 Group: Libraries
-Requires: tiff-data = %{version}-%{release}
 Requires: tiff-license = %{version}-%{release}
 
 %description lib
@@ -128,7 +124,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541793213
+export SOURCE_DATE_EPOCH=1542073155
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -144,7 +140,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1541793213
+export SOURCE_DATE_EPOCH=1542073155
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tiff
 cp COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/COPYRIGHT
@@ -152,6 +148,11 @@ cp COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/COPYRIGHT
 
 %files
 %defattr(-,root,root,-)
+
+%files abi
+%defattr(-,root,root,-)
+/usr/share/abi/libtiff.so.5.abi
+/usr/share/abi/libtiffxx.so.5.abi
 
 %files bin
 %defattr(-,root,root,-)
@@ -173,11 +174,6 @@ cp COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/COPYRIGHT
 /usr/bin/tiffmedian
 /usr/bin/tiffset
 /usr/bin/tiffsplit
-
-%files data
-%defattr(-,root,root,-)
-/usr/share/abi/libtiff.so.5.3.0.abi
-/usr/share/abi/libtiffxx.so.5.3.0.abi
 
 %files dev
 %defattr(-,root,root,-)
