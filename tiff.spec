@@ -4,7 +4,7 @@
 #
 Name     : tiff
 Version  : v4.0.9
-Release  : 37
+Release  : 38
 URL      : https://github.com/vadz/libtiff/archive/Release-v4-0-9.tar.gz
 Source0  : https://github.com/vadz/libtiff/archive/Release-v4-0-9.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
@@ -34,6 +34,8 @@ Patch9: CVE-2017-11613.patch
 Patch10: CVE-2018-1661.patch
 Patch11: CVE-2018-18557.patch
 Patch12: CVE-2018-12900.patch
+Patch13: CVE-2017-9935.patch
+Patch14: tiff2pdf-fix-incorrect-type.patch
 
 %description
 $Header$
@@ -42,14 +44,6 @@ TIFF Software Distribution
 This file is just a placeholder; all the documentation is now in
 HTML in the html directory.  To view the documentation point your
 favorite WWW viewer at html/index.html;
-
-%package abi
-Summary: abi components for the tiff package.
-Group: Default
-
-%description abi
-abi components for the tiff package.
-
 
 %package bin
 Summary: bin components for the tiff package.
@@ -120,13 +114,15 @@ man components for the tiff package.
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
+%patch13 -p1
+%patch14 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542150149
+export SOURCE_DATE_EPOCH=1544547094
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -142,7 +138,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1542150149
+export SOURCE_DATE_EPOCH=1544547094
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tiff
 cp COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/COPYRIGHT
@@ -150,11 +146,6 @@ cp COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/COPYRIGHT
 
 %files
 %defattr(-,root,root,-)
-
-%files abi
-%defattr(-,root,root,-)
-/usr/share/abi/libtiff.so.5.abi
-/usr/share/abi/libtiffxx.so.5.abi
 
 %files bin
 %defattr(-,root,root,-)
