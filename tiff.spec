@@ -4,7 +4,7 @@
 #
 Name     : tiff
 Version  : v4.0.9
-Release  : 39
+Release  : 40
 URL      : https://github.com/vadz/libtiff/archive/Release-v4-0-9.tar.gz
 Source0  : https://github.com/vadz/libtiff/archive/Release-v4-0-9.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
@@ -36,6 +36,7 @@ Patch11: CVE-2018-18557.patch
 Patch12: CVE-2018-12900.patch
 Patch13: CVE-2017-9935.patch
 Patch14: tiff2pdf-fix-incorrect-type.patch
+Patch15: CVE-2018-19210.patch
 
 %description
 $Header$
@@ -116,13 +117,14 @@ man components for the tiff package.
 %patch12 -p1
 %patch13 -p1
 %patch14 -p1
+%patch15 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1544691437
+export SOURCE_DATE_EPOCH=1544824263
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -138,7 +140,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1544691437
+export SOURCE_DATE_EPOCH=1544824263
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tiff
 cp COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/COPYRIGHT

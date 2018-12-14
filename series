@@ -12,3 +12,5 @@ CVE-2018-18557.patch
 CVE-2018-12900.patch
 CVE-2017-9935.patch
 tiff2pdf-fix-incorrect-type.patch
+CVE-2018-19210.patch
+
