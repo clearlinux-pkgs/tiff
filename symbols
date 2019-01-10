@@ -80,6 +80,7 @@ libtiff.so.5:TIFFInitPackBits
 libtiff.so.5:TIFFInitPixarLog
 libtiff.so.5:TIFFInitSGILog
 libtiff.so.5:TIFFInitThunderScan
+libtiff.so.5:TIFFInitWebP
 libtiff.so.5:TIFFInitZIP
 libtiff.so.5:TIFFIsBigEndian
 libtiff.so.5:TIFFIsByteSwapped

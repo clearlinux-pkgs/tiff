@@ -1,5 +1,6 @@
-v4.0.9
+v4.0.10
 libjpeg-turbo-dev
+libwebp-dev
 mesa-dev
 pkgconfig(ice)
 pkgconfig(zlib)
