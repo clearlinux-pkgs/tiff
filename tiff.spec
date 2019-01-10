@@ -4,7 +4,7 @@
 #
 Name     : tiff
 Version  : v4.0.10
-Release  : 42
+Release  : 43
 URL      : https://gitlab.com/libtiff/libtiff/-/archive/v4.0.10/libtiff-v4.0.10.tar.gz
 Source0  : https://gitlab.com/libtiff/libtiff/-/archive/v4.0.10/libtiff-v4.0.10.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
@@ -22,16 +22,12 @@ BuildRequires : mesa-dev
 BuildRequires : pkgconfig(ice)
 BuildRequires : pkgconfig(zlib)
 BuildRequires : xz-dev
-Patch1: CVE-2017-11613.patch
-Patch2: CVE-2018-12900.patch
-Patch3: CVE-2018-19210.patch
+BuildRequires : zlib-dev
+Patch1: CVE-2018-12900.patch
+Patch2: CVE-2018-19210.patch
 
 %description
-xtiff 2.0
-xtiff is a tool for viewing a TIFF file in an X window.  It was written to
-handle as many different kinds of TIFF files as possible while remaining
-simple, portable and efficient.  xtiff requires X11 R4, the Athena Widgets
-and Sam Leffler's libtiff package (which can be found on ucbvax.berkeley.edu).
+This directory contains various contributions from libtiff users.
 
 %package bin
 Summary: bin components for the tiff package.
@@ -92,14 +88,13 @@ man components for the tiff package.
 %setup -q -n libtiff-v4.0.10
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547084630
+export SOURCE_DATE_EPOCH=1547094890
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -115,7 +110,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1547084630
+export SOURCE_DATE_EPOCH=1547094890
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tiff
 cp COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/COPYRIGHT

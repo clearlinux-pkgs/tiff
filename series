@@ -1,16 +1,3 @@
-#cve-2017-18013.patch
-#cve-2018-5784.patch
-#cve-2018-7456.patch
-#CVE-2018-10963.patch
-#CVE-2017-17095.patch
-#CVE-2018-17100.patch
-#CVE-2018-17101.patch
-#cve-2018-8905.patch
-CVE-2017-11613.patch
-#CVE-2018-18661.patch
-#CVE-2018-18557.patch
 CVE-2018-12900.patch
-#CVE-2017-9935.patch
-#tiff2pdf-fix-incorrect-type.patch
 CVE-2018-19210.patch
 
