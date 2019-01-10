@@ -4,7 +4,7 @@
 #
 Name     : tiff
 Version  : v4.0.9
-Release  : 40
+Release  : 41
 URL      : https://github.com/vadz/libtiff/archive/Release-v4-0-9.tar.gz
 Source0  : https://github.com/vadz/libtiff/archive/Release-v4-0-9.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
@@ -39,12 +39,11 @@ Patch14: tiff2pdf-fix-incorrect-type.patch
 Patch15: CVE-2018-19210.patch
 
 %description
-$Header$
-TIFF Software Distribution
---------------------------
-This file is just a placeholder; all the documentation is now in
-HTML in the html directory.  To view the documentation point your
-favorite WWW viewer at html/index.html;
+xtiff 2.0
+xtiff is a tool for viewing a TIFF file in an X window.  It was written to
+handle as many different kinds of TIFF files as possible while remaining
+simple, portable and efficient.  xtiff requires X11 R4, the Athena Widgets
+and Sam Leffler's libtiff package (which can be found on ucbvax.berkeley.edu).
 
 %package bin
 Summary: bin components for the tiff package.
@@ -124,7 +123,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1544824263
+export SOURCE_DATE_EPOCH=1547082154
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -140,7 +139,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1544824263
+export SOURCE_DATE_EPOCH=1547082154
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tiff
 cp COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/COPYRIGHT
