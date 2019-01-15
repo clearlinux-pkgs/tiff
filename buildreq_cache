@@ -6,3 +6,4 @@ pkgconfig(ice)
 pkgconfig(zlib)
 xz-dev
 zlib-dev
+zstd-dev

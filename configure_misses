@@ -2,14 +2,39 @@ Configure miss: jbg_dec_init in -ljbig
 Configure miss: jbig.h usability
 Configure miss: jbig.h presence
 Configure miss: jbig.h
-Configure miss: ZSTD_decompressStream in -lzstd
-Configure miss: zstd.h usability
-Configure miss: zstd.h presence
-Configure miss: zstd.h
 Configure miss: whether we are using the Microsoft C compiler
 Configure miss: OpenGL/gl.h usability
 Configure miss: OpenGL/gl.h presence
 Configure miss: OpenGL/gl.h
+Configure miss: GL/glu.h usability
+Configure miss: GL/glu.h presence
+Configure miss: GL/glu.h
+Configure miss: OpenGL/glu.h usability
+Configure miss: OpenGL/glu.h presence
+Configure miss: OpenGL/glu.h
+Configure miss: OpenGL Utility library
+Configure miss: GL/glut.h usability
+Configure miss: GL/glut.h presence
+Configure miss: GL/glut.h
+Configure miss: GLUT/glut.h usability
+Configure miss: GLUT/glut.h presence
+Configure miss: GLUT/glut.h
+Configure miss: GLUT library
+Configure miss: inflateEnd in -lz
+Configure miss: jpeg_read_scanlines in -ljpeg
+Configure miss: jbg_dec_init in -ljbig
+Configure miss: jbig.h usability
+Configure miss: jbig.h presence
+Configure miss: jbig.h
+Configure miss: lzma_code in -llzma
+Configure miss: ZSTD_decompressStream in -lzstd
+Configure miss: WebPDecode in -lwebp
+Configure miss: X
+Configure miss: whether we are using the Microsoft C compiler
+Configure miss: OpenGL/gl.h usability
+Configure miss: OpenGL/gl.h presence
+Configure miss: OpenGL/gl.h
+Configure miss: OpenGL library
 Configure miss: GL/glu.h usability
 Configure miss: GL/glu.h presence
 Configure miss: GL/glu.h

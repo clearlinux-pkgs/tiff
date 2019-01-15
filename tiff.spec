@@ -4,7 +4,7 @@
 #
 Name     : tiff
 Version  : v4.0.10
-Release  : 44
+Release  : 45
 URL      : https://gitlab.com/libtiff/libtiff/-/archive/v4.0.10/libtiff-v4.0.10.tar.gz
 Source0  : https://gitlab.com/libtiff/libtiff/-/archive/v4.0.10/libtiff-v4.0.10.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
@@ -16,6 +16,11 @@ Requires: tiff-license = %{version}-%{release}
 Requires: tiff-man = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-scons
+BuildRequires : gcc-dev32
+BuildRequires : gcc-libgcc32
+BuildRequires : gcc-libstdc++32
+BuildRequires : glibc-dev32
+BuildRequires : glibc-libc32
 BuildRequires : libjpeg-turbo-dev
 BuildRequires : libwebp-dev
 BuildRequires : mesa-dev
@@ -23,12 +28,17 @@ BuildRequires : pkgconfig(ice)
 BuildRequires : pkgconfig(zlib)
 BuildRequires : xz-dev
 BuildRequires : zlib-dev
+BuildRequires : zstd-dev
 Patch1: CVE-2018-12900.patch
 Patch2: CVE-2018-19210.patch
 Patch3: CVE-2019-6128.patch
 
 %description
-This directory contains various contributions from libtiff users.
+xtiff 2.0
+xtiff is a tool for viewing a TIFF file in an X window.  It was written to
+handle as many different kinds of TIFF files as possible while remaining
+simple, portable and efficient.  xtiff requires X11 R4, the Athena Widgets
+and Sam Leffler's libtiff package (which can be found on ucbvax.berkeley.edu).
 
 %package bin
 Summary: bin components for the tiff package.
@@ -51,6 +61,17 @@ Provides: tiff-devel = %{version}-%{release}
 dev components for the tiff package.
 
 
+%package dev32
+Summary: dev32 components for the tiff package.
+Group: Default
+Requires: tiff-lib32 = %{version}-%{release}
+Requires: tiff-bin = %{version}-%{release}
+Requires: tiff-dev = %{version}-%{release}
+
+%description dev32
+dev32 components for the tiff package.
+
+
 %package doc
 Summary: doc components for the tiff package.
 Group: Documentation
@@ -67,6 +88,15 @@ Requires: tiff-license = %{version}-%{release}
 
 %description lib
 lib components for the tiff package.
+
+
+%package lib32
+Summary: lib32 components for the tiff package.
+Group: Default
+Requires: tiff-license = %{version}-%{release}
+
+%description lib32
+lib32 components for the tiff package.
 
 
 %package license
@@ -90,19 +120,31 @@ man components for the tiff package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+pushd ..
+cp -a libtiff-v4.0.10 build32
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547508046
+export SOURCE_DATE_EPOCH=1547562867
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 %reconfigure --disable-static
 make  %{?_smp_mflags}
+pushd ../build32/
+export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+export ASFLAGS="$ASFLAGS --32"
+export CFLAGS="$CFLAGS -m32"
+export CXXFLAGS="$CXXFLAGS -m32"
+export LDFLAGS="$LDFLAGS -m32"
+%reconfigure --disable-static   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+make  %{?_smp_mflags}
+popd
 
 %check
 export LANG=C
@@ -110,12 +152,23 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
+cd ../build32;
+make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1547508046
+export SOURCE_DATE_EPOCH=1547562867
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tiff
 cp COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/COPYRIGHT
+pushd ../build32/
+%make_install32
+if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
+then
+pushd %{buildroot}/usr/lib32/pkgconfig
+for i in *.pc ; do ln -s $i 32$i ; done
+popd
+fi
+popd
 %make_install
 
 %files
@@ -193,6 +246,13 @@ cp COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/COPYRIGHT
 /usr/share/man/man3/TIFFswab.3tiff
 /usr/share/man/man3/TIFFtile.3tiff
 /usr/share/man/man3/libtiff.3tiff
+
+%files dev32
+%defattr(-,root,root,-)
+/usr/lib32/libtiff.so
+/usr/lib32/libtiffxx.so
+/usr/lib32/pkgconfig/32libtiff-4.pc
+/usr/lib32/pkgconfig/libtiff-4.pc
 
 %files doc
 %defattr(0644,root,root,0755)
@@ -350,6 +410,13 @@ cp COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/COPYRIGHT
 /usr/lib64/libtiff.so.5.4.0
 /usr/lib64/libtiffxx.so.5
 /usr/lib64/libtiffxx.so.5.4.0
+
+%files lib32
+%defattr(-,root,root,-)
+/usr/lib32/libtiff.so.5
+/usr/lib32/libtiff.so.5.4.0
+/usr/lib32/libtiffxx.so.5
+/usr/lib32/libtiffxx.so.5.4.0
 
 %files license
 %defattr(0644,root,root,0755)
