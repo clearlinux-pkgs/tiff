@@ -4,7 +4,7 @@
 #
 Name     : tiff
 Version  : v4.0.10
-Release  : 45
+Release  : 46
 URL      : https://gitlab.com/libtiff/libtiff/-/archive/v4.0.10/libtiff-v4.0.10.tar.gz
 Source0  : https://gitlab.com/libtiff/libtiff/-/archive/v4.0.10/libtiff-v4.0.10.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
@@ -32,13 +32,10 @@ BuildRequires : zstd-dev
 Patch1: CVE-2018-12900.patch
 Patch2: CVE-2018-19210.patch
 Patch3: CVE-2019-6128.patch
+Patch4: CVE-2019-7663.patch
 
 %description
-xtiff 2.0
-xtiff is a tool for viewing a TIFF file in an X window.  It was written to
-handle as many different kinds of TIFF files as possible while remaining
-simple, portable and efficient.  xtiff requires X11 R4, the Athena Widgets
-and Sam Leffler's libtiff package (which can be found on ucbvax.berkeley.edu).
+This directory contains various contributions from libtiff users.
 
 %package bin
 Summary: bin components for the tiff package.
@@ -120,6 +117,7 @@ man components for the tiff package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 pushd ..
 cp -a libtiff-v4.0.10 build32
 popd
@@ -129,7 +127,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547562867
+export SOURCE_DATE_EPOCH=1549917190
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -138,10 +136,10 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 pushd ../build32/
 export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
-export ASFLAGS="$ASFLAGS --32"
-export CFLAGS="$CFLAGS -m32"
-export CXXFLAGS="$CXXFLAGS -m32"
-export LDFLAGS="$LDFLAGS -m32"
+export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
+export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32"
+export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32"
+export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32"
 %reconfigure --disable-static   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make  %{?_smp_mflags}
 popd
@@ -156,7 +154,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1547562867
+export SOURCE_DATE_EPOCH=1549917190
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tiff
 cp COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/COPYRIGHT
