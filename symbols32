@@ -179,6 +179,7 @@ libtiff.so.5:TIFFXYZToRGB
 libtiff.so.5:TIFFYCbCrToRGBInit
 libtiff.so.5:TIFFYCbCrtoRGB
 libtiff.so.5:XYZtoRGB24
+libtiff.so.5:_TIFFCastUInt64ToSSize
 libtiff.so.5:_TIFFCheckFieldIsValidForCodec
 libtiff.so.5:_TIFFCheckMalloc
 libtiff.so.5:_TIFFCheckRealloc
@@ -194,6 +195,7 @@ libtiff.so.5:_TIFFGetFields
 libtiff.so.5:_TIFFMergeFields
 libtiff.so.5:_TIFFMultiply32
 libtiff.so.5:_TIFFMultiply64
+libtiff.so.5:_TIFFMultiplySSize
 libtiff.so.5:_TIFFNoPostDecode
 libtiff.so.5:_TIFFNoPreCode
 libtiff.so.5:_TIFFNoRowDecode

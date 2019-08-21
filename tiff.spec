@@ -4,7 +4,7 @@
 #
 Name     : tiff
 Version  : v4.0.10
-Release  : 47
+Release  : 48
 URL      : https://gitlab.com/libtiff/libtiff/-/archive/v4.0.10/libtiff-v4.0.10.tar.gz
 Source0  : https://gitlab.com/libtiff/libtiff/-/archive/v4.0.10/libtiff-v4.0.10.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
@@ -33,6 +33,7 @@ Patch1: CVE-2018-12900.patch
 Patch2: CVE-2018-19210.patch
 Patch3: CVE-2019-6128.patch
 Patch4: CVE-2019-7663.patch
+Patch5: CVE-2019-14973.patch
 
 %description
 This directory contains various contributions from libtiff users.
@@ -41,7 +42,6 @@ This directory contains various contributions from libtiff users.
 Summary: bin components for the tiff package.
 Group: Binaries
 Requires: tiff-license = %{version}-%{release}
-Requires: tiff-man = %{version}-%{release}
 
 %description bin
 bin components for the tiff package.
@@ -53,6 +53,7 @@ Group: Development
 Requires: tiff-lib = %{version}-%{release}
 Requires: tiff-bin = %{version}-%{release}
 Provides: tiff-devel = %{version}-%{release}
+Requires: tiff = %{version}-%{release}
 
 %description dev
 dev components for the tiff package.
@@ -118,6 +119,7 @@ man components for the tiff package.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 pushd ..
 cp -a libtiff-v4.0.10 build32
 popd
@@ -126,12 +128,13 @@ popd
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1549917190
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1566430577
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 %reconfigure --disable-static
 make  %{?_smp_mflags}
 pushd ../build32/
@@ -145,7 +148,7 @@ make  %{?_smp_mflags}
 popd
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -154,7 +157,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1549917190
+export SOURCE_DATE_EPOCH=1566430577
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tiff
 cp COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/COPYRIGHT
