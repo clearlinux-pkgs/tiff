@@ -4,7 +4,7 @@
 #
 Name     : tiff
 Version  : v4.0.10
-Release  : 49
+Release  : 50
 URL      : https://gitlab.com/libtiff/libtiff/-/archive/v4.0.10/libtiff-v4.0.10.tar.gz
 Source0  : https://gitlab.com/libtiff/libtiff/-/archive/v4.0.10/libtiff-v4.0.10.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
@@ -34,6 +34,7 @@ Patch2: CVE-2018-19210.patch
 Patch3: CVE-2019-6128.patch
 Patch4: CVE-2019-7663.patch
 Patch5: CVE-2019-14973.patch
+Patch6: CVE-2019-17546.patch
 
 %description
 This directory contains various contributions from libtiff users.
@@ -120,6 +121,7 @@ man components for the tiff package.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 pushd ..
 cp -a libtiff-v4.0.10 build32
 popd
@@ -129,7 +131,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568877398
+export SOURCE_DATE_EPOCH=1571420672
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -157,10 +159,10 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1568877398
+export SOURCE_DATE_EPOCH=1571420672
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tiff
-cp COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/COPYRIGHT
+cp %{_builddir}/libtiff-v4.0.10/COPYRIGHT %{buildroot}/usr/share/package-licenses/tiff/a2f64f2a85f5fd34bda8eb713c3aad008adbb589
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
@@ -424,7 +426,7 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/tiff/COPYRIGHT
+/usr/share/package-licenses/tiff/a2f64f2a85f5fd34bda8eb713c3aad008adbb589
 
 %files man
 %defattr(0644,root,root,0755)
