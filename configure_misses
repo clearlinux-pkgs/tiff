@@ -1,35 +1,41 @@
-Configure miss: g++ option to enable C++11 features
-Configure miss: gcc options needed to detect all undeclared functions
-Configure miss: libdeflate_zlib_decompress in -ldeflate
-Configure miss: libdeflate.h
-Configure miss: jbg_dec_init in -ljbig
-Configure miss: jbig.h
-Configure miss: whether we are using the Microsoft C compiler
-Configure miss: OpenGL/gl.h
 Configure miss: GL/glu.h
-Configure miss: OpenGL/glu.h
-Configure miss: OpenGL Utility library
+Configure miss: GL/glu.h
 Configure miss: GL/glut.h
-Configure miss: GLUT/glut.h
+Configure miss: GL/glut.h
 Configure miss: GLUT library
-Configure miss: g++ option to enable C++11 features
-Configure miss: gcc options needed to detect all undeclared functions
-Configure miss: inflateEnd in -lz
-Configure miss: libdeflate_zlib_decompress in -ldeflate
-Configure miss: libdeflate.h
-Configure miss: jpeg_read_scanlines in -ljpeg
-Configure miss: jbg_dec_init in -ljbig
-Configure miss: jbig.h
-Configure miss: lzma_code in -llzma
-Configure miss: ZSTD_decompressStream in -lzstd
+Configure miss: GLUT library
+Configure miss: GLUT/glut.h
+Configure miss: GLUT/glut.h
+Configure miss: Lerc_c_api.h
+Configure miss: Lerc_c_api.h
+Configure miss: OpenGL Utility library
+Configure miss: OpenGL Utility library
+Configure miss: OpenGL library
+Configure miss: OpenGL/gl.h
+Configure miss: OpenGL/gl.h
+Configure miss: OpenGL/glu.h
+Configure miss: OpenGL/glu.h
 Configure miss: WebPDecode in -lwebp
 Configure miss: X
+Configure miss: ZSTD_decompressStream in -lzstd
+Configure miss: g++ option to enable C++11 features
+Configure miss: g++ option to enable C++11 features
+Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: inflateEnd in -lz
+Configure miss: jbg_dec_init in -ljbig
+Configure miss: jbg_dec_init in -ljbig
+Configure miss: jbig.h
+Configure miss: jbig.h
+Configure miss: jpeg_read_scanlines in -ljpeg
+Configure miss: lerc_decode in -l"Lerc"
+Configure miss: lerc_decode in -l"Lerc"
+Configure miss: lerc_decode in -l"LercLib"
+Configure miss: lerc_decode in -l"LercLib"
+Configure miss: libdeflate.h
+Configure miss: libdeflate.h
+Configure miss: libdeflate_zlib_decompress in -ldeflate
+Configure miss: libdeflate_zlib_decompress in -ldeflate
+Configure miss: lzma_code in -llzma
 Configure miss: whether we are using the Microsoft C compiler
-Configure miss: OpenGL/gl.h
-Configure miss: OpenGL library
-Configure miss: GL/glu.h
-Configure miss: OpenGL/glu.h
-Configure miss: OpenGL Utility library
-Configure miss: GL/glut.h
-Configure miss: GLUT/glut.h
-Configure miss: GLUT library
+Configure miss: whether we are using the Microsoft C compiler
