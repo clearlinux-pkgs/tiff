@@ -1,8 +1,9 @@
-4.4.0
+4.5.0
 libjpeg-turbo-dev
 libwebp-dev
 mesa-dev
 pkgconfig(zlib)
+pypi-sphinx
 xz-dev
 zlib-dev
 zstd-dev

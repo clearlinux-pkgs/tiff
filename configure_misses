@@ -28,6 +28,7 @@ Configure miss: jbg_dec_init in -ljbig
 Configure miss: jbg_dec_init in -ljbig
 Configure miss: jbig.h
 Configure miss: jbig.h
+Configure miss: jpeg12_read_scanlines in -ljpeg
 Configure miss: jpeg_read_scanlines in -ljpeg
 Configure miss: lerc_decode in -l"Lerc"
 Configure miss: lerc_decode in -l"Lerc"
@@ -38,6 +39,26 @@ Configure miss: libdeflate.h
 Configure miss: libdeflate_zlib_decompress in -ldeflate
 Configure miss: libdeflate_zlib_decompress in -ldeflate
 Configure miss: lzma_code in -llzma
+Configure miss: python3.0
+Configure miss: python3.0
+Configure miss: python3.1
+Configure miss: python3.1
+Configure miss: python3.2
+Configure miss: python3.2
+Configure miss: python3.3
+Configure miss: python3.3
+Configure miss: python3.4
+Configure miss: python3.4
+Configure miss: python3.5
+Configure miss: python3.5
+Configure miss: python3.6
+Configure miss: python3.6
+Configure miss: python3.7
+Configure miss: python3.7
+Configure miss: python3.8
+Configure miss: python3.8
+Configure miss: python3.9
+Configure miss: python3.9
 Configure miss: whether we are using the Microsoft C compiler
 Configure miss: whether we are using the Microsoft C compiler
 Configure miss: x86_64-generic-linux-gnu-file
