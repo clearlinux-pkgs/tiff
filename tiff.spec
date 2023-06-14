@@ -4,10 +4,10 @@
 # Using build pattern: configure_ac
 #
 Name     : tiff
-Version  : 4.5.0
-Release  : 60
-URL      : https://gitlab.com/libtiff/libtiff/-/archive/v4.5.0/libtiff-v4.5.0.tar.gz
-Source0  : https://gitlab.com/libtiff/libtiff/-/archive/v4.5.0/libtiff-v4.5.0.tar.gz
+Version  : 4.5.1
+Release  : 61
+URL      : https://gitlab.com/libtiff/libtiff/-/archive/v4.5.1/libtiff-v4.5.1.tar.gz
+Source0  : https://gitlab.com/libtiff/libtiff/-/archive/v4.5.1/libtiff-v4.5.1.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
 Group    : Development/Tools
 License  : libtiff
@@ -100,13 +100,13 @@ man components for the tiff package.
 
 
 %prep
-%setup -q -n libtiff-v4.5.0
-cd %{_builddir}/libtiff-v4.5.0
+%setup -q -n libtiff-v4.5.1
+cd %{_builddir}/libtiff-v4.5.1
 pushd ..
-cp -a libtiff-v4.5.0 build32
+cp -a libtiff-v4.5.1 build32
 popd
 pushd ..
-cp -a libtiff-v4.5.0 buildavx2
+cp -a libtiff-v4.5.1 buildavx2
 popd
 
 %build
@@ -114,7 +114,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1686760404
+export SOURCE_DATE_EPOCH=1686765308
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -154,7 +154,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1686760404
+export SOURCE_DATE_EPOCH=1686765308
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -304,19 +304,19 @@ chmod a+x %{buildroot}/usr/lib32/*
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libtiff.so.6.0.0
-/V3/usr/lib64/libtiffxx.so.6.0.0
+/V3/usr/lib64/libtiff.so.6.0.1
+/V3/usr/lib64/libtiffxx.so.6.0.1
 /usr/lib64/libtiff.so.6
-/usr/lib64/libtiff.so.6.0.0
+/usr/lib64/libtiff.so.6.0.1
 /usr/lib64/libtiffxx.so.6
-/usr/lib64/libtiffxx.so.6.0.0
+/usr/lib64/libtiffxx.so.6.0.1
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libtiff.so.6
-/usr/lib32/libtiff.so.6.0.0
+/usr/lib32/libtiff.so.6.0.1
 /usr/lib32/libtiffxx.so.6
-/usr/lib32/libtiffxx.so.6.0.0
+/usr/lib32/libtiffxx.so.6.0.1
 
 %files man
 %defattr(0644,root,root,0755)
