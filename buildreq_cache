@@ -1,4 +1,5 @@
-4.5.0
+4.5.1
+cmake
 libjpeg-turbo-dev
 libwebp-dev
 mesa-dev
