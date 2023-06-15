@@ -5,7 +5,7 @@
 #
 Name     : tiff
 Version  : 4.5.1
-Release  : 61
+Release  : 62
 URL      : https://gitlab.com/libtiff/libtiff/-/archive/v4.5.1/libtiff-v4.5.1.tar.gz
 Source0  : https://gitlab.com/libtiff/libtiff/-/archive/v4.5.1/libtiff-v4.5.1.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
