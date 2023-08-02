@@ -5,7 +5,7 @@
 #
 Name     : tiff
 Version  : 4.5.1
-Release  : 62
+Release  : 63
 URL      : https://gitlab.com/libtiff/libtiff/-/archive/v4.5.1/libtiff-v4.5.1.tar.gz
 Source0  : https://gitlab.com/libtiff/libtiff/-/archive/v4.5.1/libtiff-v4.5.1.tar.gz
 Summary  : Tag Image File Format (TIFF) library.
@@ -31,6 +31,7 @@ BuildRequires : zstd-dev
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
+Patch1: backport-overflow-checks.patch
 
 %description
 This directory contains various contributions from libtiff users.
@@ -102,6 +103,7 @@ man components for the tiff package.
 %prep
 %setup -q -n libtiff-v4.5.1
 cd %{_builddir}/libtiff-v4.5.1
+%patch -P 1 -p1
 pushd ..
 cp -a libtiff-v4.5.1 build32
 popd
@@ -114,7 +116,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1686765308
+export SOURCE_DATE_EPOCH=1691015186
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -154,7 +156,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1686765308
+export SOURCE_DATE_EPOCH=1691015186
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
