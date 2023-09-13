@@ -1,32 +1,7 @@
-Configure miss: GL/glu.h
-Configure miss: GL/glu.h
-Configure miss: GL/glu.h
-Configure miss: GL/glut.h
-Configure miss: GL/glut.h
-Configure miss: GL/glut.h
-Configure miss: GLUT library
-Configure miss: GLUT library
-Configure miss: GLUT library
-Configure miss: GLUT/glut.h
-Configure miss: GLUT/glut.h
-Configure miss: GLUT/glut.h
 Configure miss: Lerc_c_api.h
 Configure miss: Lerc_c_api.h
 Configure miss: Lerc_c_api.h
-Configure miss: OpenGL Utility library
-Configure miss: OpenGL Utility library
-Configure miss: OpenGL Utility library
-Configure miss: OpenGL library
-Configure miss: OpenGL/gl.h
-Configure miss: OpenGL/gl.h
-Configure miss: OpenGL/gl.h
-Configure miss: OpenGL/glu.h
-Configure miss: OpenGL/glu.h
-Configure miss: OpenGL/glu.h
 Configure miss: WebPDecode in -lwebp
-Configure miss: X
-Configure miss: X
-Configure miss: X
 Configure miss: ZSTD_decompressStream in -lzstd
 Configure miss: g++ option to enable C++11 features
 Configure miss: g++ option to enable C++11 features
@@ -42,8 +17,6 @@ Configure miss: jbg_dec_init in -ljbig
 Configure miss: jbig.h
 Configure miss: jbig.h
 Configure miss: jbig.h
-Configure miss: jpeg12_read_scanlines in -ljpeg
-Configure miss: jpeg12_read_scanlines in -ljpeg
 Configure miss: jpeg_read_scanlines in -ljpeg
 Configure miss: lerc_decode in -l"Lerc"
 Configure miss: lerc_decode in -l"Lerc"
@@ -88,8 +61,5 @@ Configure miss: python3.8
 Configure miss: python3.9
 Configure miss: python3.9
 Configure miss: python3.9
-Configure miss: whether we are using the Microsoft C compiler
-Configure miss: whether we are using the Microsoft C compiler
-Configure miss: whether we are using the Microsoft C compiler
 Configure miss: x86_64-generic-linux-gnu-file
 Configure miss: x86_64-generic-linux-gnu-file
