@@ -3,3 +3,5 @@
 MesaLib-dev
 glu-dev
 freeglut-dev
+xz-dev
+xz-dev32

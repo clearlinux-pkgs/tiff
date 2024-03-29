@@ -6,6 +6,8 @@ Configure miss: ZSTD_decompressStream in -lzstd
 Configure miss: g++ option to enable C++11 features
 Configure miss: g++ option to enable C++11 features
 Configure miss: g++ option to enable C++11 features
+Configure miss: gcc option to enable large file support
+Configure miss: gcc option to enable large file support
 Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: gcc options needed to detect all undeclared functions
@@ -30,6 +32,11 @@ Configure miss: libdeflate.h
 Configure miss: libdeflate_zlib_decompress in -ldeflate
 Configure miss: libdeflate_zlib_decompress in -ldeflate
 Configure miss: libdeflate_zlib_decompress in -ldeflate
+Configure miss: lzma.h
+Configure miss: lzma.h
+Configure miss: lzma.h
+Configure miss: lzma_code in -llzma
+Configure miss: lzma_code in -llzma
 Configure miss: lzma_code in -llzma
 Configure miss: python3.0
 Configure miss: python3.0

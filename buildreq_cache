@@ -1,5 +1,6 @@
 4.6.0
 cmake
+file
 libjpeg-turbo-dev
 libwebp-dev
 pkgconfig(zlib)
