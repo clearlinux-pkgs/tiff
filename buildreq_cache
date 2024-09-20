@@ -1,10 +1,10 @@
-4.6.0
+4.7.0
 cmake
 file
 libjpeg-turbo-dev
 libwebp-dev
+mesa-dev
 pkgconfig(zlib)
 pypi-sphinx
-xz-dev
 zlib-dev
 zstd-dev
